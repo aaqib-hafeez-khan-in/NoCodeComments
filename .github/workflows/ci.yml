@@ -111,7 +111,7 @@ jobs:
       - name: Verify legacy link is present
         run: |
           grep -qi "legacy" index.html
-          grep -q "legacy/index.html" index.html
+          grep -q 'href="./legacy/"' index.html
 
       - name: Verify CI configuration
         run: |
