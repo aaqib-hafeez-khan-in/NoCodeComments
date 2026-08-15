@@ -1,1 +1,47 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Universal code comment stripper with conservative syntax-aware scanning across dozens of programming languages."><title>NoCodeComments · Universal Comment Stripper</title><link rel="stylesheet" href="style.css"></head><body><main><section class="hero"><div><div class="eyebrow">NoCodeComments</div><h1>Strip comments without breaking code.</h1><p>A browser-only, syntax-aware comment remover. It protects quoted strings, template literals and regex literals, preserves line endings, and supports dozens of language families.</p></div></section><section class="card"><div class="controls"><select id="languageSelect" aria-label="Language"></select><button id="uploadButton" class="primary">Open code file</button><input id="fileInput" type="file" hidden><span id="fileName" class="status">No file selected</span><label class="status"><input id="trimWhitespace" type="checkbox"> Collapse excessive blank lines</label><span id="stats" class="status">Ready</span></div></section><section class="grid"><article class="card"><div class="bar"><h2>Input</h2><span class="status">Paste, type, or drop a file</span></div><textarea id="codeInput" spellcheck="false" placeholder="Paste source code here..."></textarea></article><article class="card"><div class="bar"><h2>Comment-free output</h2><div class="controls"><button id="copyButton">Copy output</button><button id="downloadButton">Download</button><button id="clearButton">Clear</button></div></div><textarea id="outputCode" readonly spellcheck="false"></textarea></article></section><div class="footer"><a class="legacy" href="./legacy/">Legacy version</a></div></main><script type="module" src="app.js"></script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Universal code comment stripper with conservative syntax-aware scanning across dozens of programming languages."><link rel="icon" href="./favicon.svg" type="image/svg+xml"><title>NoCodeComments · Universal Comment Stripper</title><link rel="stylesheet" href="style.css"></head><body><main><section class="hero"><div><div class="eyebrow">NoCodeComments</div><h1>Strip comments without breaking code.</h1><p>A browser-only, syntax-aware comment remover. It protects quoted strings, template literals and regex literals, preserves line endings, and supports dozens of language families.</p></div></section><section class="card"><div class="controls"><select id="languageSelect" aria-label="Language"></select><button id="uploadButton" class="primary">Open code file</button><input id="fileInput" type="file" hidden><span id="fileName" class="status">No file selected</span><label class="status"><input id="trimWhitespace" type="checkbox"> Collapse excessive blank lines</label><span id="stats" class="status">Ready</span></div></section><section class="grid"><article class="card"><div class="bar"><h2>Input</h2><span class="status">Paste, type, or drop a file</span></div><textarea id="codeInput" spellcheck="false" placeholder="Paste source code here..."></textarea></article><article class="card"><div class="bar"><h2>Comment-free output</h2><div class="controls"><button id="copyButton">Copy output</button><button id="downloadButton">Download</button><button id="clearButton">Clear</button></div></div><textarea id="outputCode" readonly spellcheck="false"></textarea></article></section><section class="card snippets"><div class="bar"><div><h2>Test snippets</h2><p class="status">Copy a snippet into the editor to verify comment removal and string protection.</p></div></div><div class="snippet-grid"><details><summary>JavaScript</summary><pre><code>// API configuration
+const url = "https://example.com/api//users";
+
+/* temporary calculation */
+const total = 10 + 20;
+
+const message = "Don't remove // this";
+console.log(message);</code></pre></details><details><summary>Python</summary><pre><code># Configuration
+name = "Aaqib"  # user name
+
+url = "https://example.com/api#users"
+
+"""
+This is a multiline string.
+# This must NOT be removed.
+"""
+
+print(name)</code></pre></details><details><summary>Java</summary><pre><code>// Create the user
+public class User {
+    /* constructor */
+    public User(String name) {
+        this.name = name;
+    }
+
+    private String name;
+
+    // return the name
+    public String getName() {
+        return name;
+    }
+}</code></pre></details><details><summary>HTML</summary><pre><code>&lt;!DOCTYPE html&gt;
+&lt;!-- Page comment --&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello &lt;!-- inline comment --&gt; World&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></details><details><summary>CSS</summary><pre><code>/* Main container */
+.container {
+    width: 100%; /* keep the declaration */
+    background: url("https://example.com/image//1.png");
+}</code></pre></details><details><summary>SQL</summary><pre><code>-- Fetch active users
+SELECT id, name
+FROM users
+WHERE status = 'active'; -- only active users
+
+/* temporary filter */
+ORDER BY name;</code></pre></details></div></section><div class="footer"><a class="legacy" href="./legacy/">Legacy version</a><a class="repo-link" href="https://github.com/aaqib-hafeez-khan-in/NoCodeComments" target="_blank" rel="noopener noreferrer">GitHub repository</a></div></main><script type="module" src="app.js"></script></body></html>
