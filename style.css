@@ -1,0 +1,22 @@
+/* style.css */
+
+/* Smooth transition for dark mode effects */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Highlight the drag-and-drop area when a file is dragged over */
+#codeInput.dragover {
+  border: 2px dashed #4F46E5;
+}
+
+/* Fade-in animation for processed code preview */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+#processedCode {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Custom reusable utility classes can be added here if needed */
