@@ -1,68 +1,47 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Browser-based syntax-aware code comment stripper.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="icon" href="./favicon.svg" type="image/svg+xml">
-<title>NoCodeComments · strip-comments</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="topbar">
-  <a class="wordmark" href="./" aria-label="NoCodeComments home">~/strip-comments $</a>
-  <div class="topbar-center">
-    <label class="language-shell" for="languageSelect"><span>lang:</span><select id="languageSelect" aria-label="Select language"></select></label>
-  </div>
-  <div class="topbar-actions">
-    <button id="themeToggle" class="theme-control" type="button" aria-label="Switch theme"><span id="themeFlag">[■□]</span><span id="themeLabel">--dark</span></button>
-    <button id="stripButton" class="button primary" type="button">&gt; strip comments</button>
-  </div>
-</header>
-<main class="app-shell">
-  <section class="workspace" aria-label="Code workspace">
-    <article class="pane" id="inputPane">
-      <div class="pane-tab">
-        <span id="inputLabel">input.js · 0 lines</span>
-        <span class="pane-actions"><button id="clearButton" class="bracket-button" type="button">[ clear ]</button><button id="inputDownloadButton" class="bracket-button" type="button">[ download ]</button></span>
-      </div>
-      <div class="editor-wrap" id="inputEditorWrap">
-        <div class="gutter" id="inputGutter" aria-hidden="true"><span>1</span></div>
-        <textarea id="codeInput" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Input code" placeholder="// paste code here, or drop a file"></textarea>
-      </div>
-      <div class="pane-footer"><span id="inputFileName">stdin</span><label class="file-button">&gt; open file<input id="fileInput" type="file" hidden></label></div>
-    </article>
-    <article class="pane" id="outputPane">
-      <div class="pane-tab">
-        <span id="outputLabel">output.js · 0 lines</span>
-        <span class="pane-actions"><button id="copyButton" class="bracket-button" type="button">[ copy ]</button><button id="outputDownloadButton" class="bracket-button" type="button">[ download ]</button></span>
-      </div>
-      <div class="output-status" id="outputStatus" aria-live="polite"></div>
-      <div class="editor-wrap output-wrap" id="outputEditorWrap">
-        <div class="gutter" id="outputGutter" aria-hidden="true"><span>1</span></div>
-        <textarea id="outputCode" readonly spellcheck="false" aria-label="Output code"></textarea>
-      </div>
-    </article>
-  </section>
-  <section class="statsbar" id="statsbar" aria-live="polite">
-    <span>comments: <b id="commentsStat">0</b></span><span>|</span><span>bytes saved: <b id="bytesStat">0</b></span><span>|</span><span>lines removed: <b id="linesStat">0</b></span><span>|</span><span id="statusStat">awaiting input...</span>
-  </section>
-  <details class="snippet-tray" id="snippetTray">
-    <summary>&gt; test snippets</summary>
-    <div class="snippet-grid">
-      <button class="snippet" data-language="javascript"><span>javascript</span><small>strings + line/block comments</small></button>
-      <button class="snippet" data-language="python"><span>python</span><small>strings + triple strings</small></button>
-      <button class="snippet" data-language="java"><span>java</span><small>line + block comments</small></button>
-      <button class="snippet" data-language="html"><span>html</span><small>markup comment protection</small></button>
-      <button class="snippet" data-language="css"><span>css</span><small>URL + block comments</small></button>
-      <button class="snippet" data-language="sql"><span>sql</span><small>SQL line + block comments</small></button>
-    </div>
-  </details>
-  <footer class="app-footer"><a href="./legacy/">&gt; legacy version</a></footer>
-</main>
-<script type="module" src="app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Universal code comment stripper with conservative syntax-aware scanning across dozens of programming languages."><link rel="icon" href="./favicon.svg" type="image/svg+xml"><title>NoCodeComments · Universal Comment Stripper</title><link rel="stylesheet" href="style.css"></head><body><main><section class="hero"><div><div class="eyebrow">NoCodeComments</div><h1>Strip comments without breaking code.</h1><p>A browser-only, syntax-aware comment remover. It protects quoted strings, template literals and regex literals, preserves line endings, and supports dozens of language families.</p></div></section><section class="card"><div class="controls"><select id="languageSelect" aria-label="Language"></select><button id="uploadButton" class="primary">Open code file</button><input id="fileInput" type="file" hidden><span id="fileName" class="status">No file selected</span><label class="status"><input id="trimWhitespace" type="checkbox"> Collapse excessive blank lines</label><span id="stats" class="status">Ready</span></div></section><section class="grid"><article class="card"><div class="bar"><h2>Input</h2><span class="status">Paste, type, or drop a file</span></div><textarea id="codeInput" spellcheck="false" placeholder="Paste source code here..."></textarea></article><article class="card"><div class="bar"><h2>Comment-free output</h2><div class="controls"><button id="copyButton">Copy output</button><button id="downloadButton">Download</button><button id="clearButton">Clear</button></div></div><textarea id="outputCode" readonly spellcheck="false"></textarea></article></section><section class="card snippets"><div class="bar"><div><h2>Test snippets</h2><p class="status">Copy a snippet into the editor to verify comment removal and string protection.</p></div></div><div class="snippet-grid"><details><summary>JavaScript</summary><pre><code>// API configuration
+const url = "https://example.com/api//users";
+
+/* temporary calculation */
+const total = 10 + 20;
+
+const message = "Don't remove // this";
+console.log(message);</code></pre></details><details><summary>Python</summary><pre><code># Configuration
+name = "Aaqib"  # user name
+
+url = "https://example.com/api#users"
+
+"""
+This is a multiline string.
+# This must NOT be removed.
+"""
+
+print(name)</code></pre></details><details><summary>Java</summary><pre><code>// Create the user
+public class User {
+    /* constructor */
+    public User(String name) {
+        this.name = name;
+    }
+
+    private String name;
+
+    // return the name
+    public String getName() {
+        return name;
+    }
+}</code></pre></details><details><summary>HTML</summary><pre><code>&lt;!DOCTYPE html&gt;
+&lt;!-- Page comment --&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello &lt;!-- inline comment --&gt; World&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></details><details><summary>CSS</summary><pre><code>/* Main container */
+.container {
+    width: 100%; /* keep the declaration */
+    background: url("https://example.com/image//1.png");
+}</code></pre></details><details><summary>SQL</summary><pre><code>-- Fetch active users
+SELECT id, name
+FROM users
+WHERE status = 'active'; -- only active users
+
+/* temporary filter */
+ORDER BY name;</code></pre></details></div></section><div class="footer"><a class="legacy" href="./legacy/">Legacy version</a><a class="repo-link" href="https://github.com/aaqib-hafeez-khan-in/NoCodeComments" target="_blank" rel="noopener noreferrer">GitHub repository</a></div></main><script type="module" src="app.js"></script></body></html>
