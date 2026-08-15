@@ -1,0 +1,5 @@
+/* Legacy stylesheet preserved from the original implementation. */
+body { transition: background-color 0.3s ease, color 0.3s ease; }
+#codeInput.dragover { border: 2px dashed #4F46E5; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+#processedCode { animation: fadeIn 0.5s ease-in-out; }
