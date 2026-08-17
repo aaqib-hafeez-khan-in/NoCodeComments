@@ -8,15 +8,22 @@ The language registry currently covers C, C++, C#, Java, JavaScript, TypeScript,
 
 This is intentionally not marketed as a mathematically universal parser. Every programming language has its own grammar and some languages have context-sensitive or preprocessor-specific comment rules. The scanner therefore uses explicit language profiles and avoids destructive heuristics where possible.
 
-## What changed in v2
+## Features
 
-- Replaced global regular-expression comment deletion with a character-by-character lexical scanner.
+- Removes line and block comments with a conservative lexical scanner.
 - Preserves comment-like text inside strings and template literals.
 - Preserves JavaScript/PHP/Perl-style regular-expression literals where they can be identified conservatively.
 - Preserves line endings when multiline comments are removed.
 - Supports nested block comments for language families that use them.
-- Adds filename-based language detection for uploaded files.
-- Adds content-based auto detection for common languages.
+- Auto-detects languages from uploaded filenames and common source-code content.
+- Drag-and-drop file loading.
+- Copy input or output with one click.
+- Swap the processed output back into the input editor.
+- Download stripped code with the original filename when a file was opened.
+- Optional blank-line collapsing and long-line wrapping controls.
+- Live character and line-count statistics.
+- Dark mode for comfortable editing.
+- Keyboard shortcuts: `Ctrl+Enter` reprocesses, `Ctrl+Shift+S` swaps input/output, and `Ctrl+D` downloads the output.
 - Keeps the original vanilla JavaScript implementation intact under `/legacy/`.
 - Adds automated Node.js tests covering representative language families and edge cases.
 
